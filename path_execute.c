@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * executeCommand_with_path - executeCommands a command from the path
+ * executeCommandWithPath - executeCommands a command from the path
  * @args: Array of tokenized commands
  * Return: The process id
  */
-int executeCommand_with_path(char **args)
+int executeCommandWithPath(char **args)
 {
 	LinkedPath *temp = linkPath();
 	char fullpath[1024];

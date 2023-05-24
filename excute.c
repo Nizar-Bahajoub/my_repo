@@ -24,7 +24,7 @@ int executeCommand(char *command, int line_num)
 		strcat(command_path, args[0]);
 		if (access(command_path, X_OK) == -1)
 		{
-			print_error(args[0], "not found", line_num);
+			printErrorMessage(args[0], "not found", line_num);
 			return (0);
 		}
 	}
@@ -63,7 +63,7 @@ int runChildProcess(char **args)
 	}
 	else if (checkPath(args) == 1)
 	{
-		executeCommand_with_path(args);
+		executeCommandWithPath(args);
 	}
 	else
 	{
@@ -80,25 +80,25 @@ int runChildProcess(char **args)
  */
 int runParentProcess(void)
 {
-	getExitStatusus();
+	getExitStatus();
 	return (0);
 }
 
 /**
- * getExitStatusus - Retrieves the exit status of the child process
+ * getExitStatus - Retrieves the exit status of the child process
  *
  * Return: Exit status
  */
-int getExitStatusus(void)
+int getExitStatus(void)
 {
 	int status;
-	static int getExitStatusus;
+	static int getExitStatus;
 
 	wait(&status);
 
 	if (WIFEXITED(status))
 	{
-		getExitStatusus = WEXITSTATUS(status);
+		getExitStatus = WEXITSTATUS(status);
 	}
-	return (getExitStatusus);
+	return (getExitStatus);
 }

@@ -13,7 +13,7 @@ int isBuiltInCommand(char **args, int line_num)
 
 	if (strcmp(args[0], "exit") == 0)
 	{
-		_exit(args);
+		exitShell(args);
 		exit(EXIT_SUCCESS);
 	}
 	if (strcmp(args[0], "env") == 0)

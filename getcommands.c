@@ -71,7 +71,7 @@ ssize_t getLine(char **buffer, size_t *bufsize, int fd)
 
 	if (!*buffer)
 	{
-		not_buff();
+		disableBuffering();
 	}
 
 	while ((read_bytes = read(fd, *buffer + len, 1)) > 0)
@@ -89,7 +89,7 @@ ssize_t getLine(char **buffer, size_t *bufsize, int fd)
 			*bufsize *= 2;
 			*buffer = realloc(*buffer, *bufsize * sizeof(char));
 			if (!*buffer)
-				not_buff();
+				disableBuffering();
 		}
 	}
 
@@ -104,9 +104,9 @@ ssize_t getLine(char **buffer, size_t *bufsize, int fd)
 }
 
 /**
- * not_buff - Prints an error message
+ * disableBuffering - Prints an error message
  */
-void not_buff(void)
+void disableBuffering(void)
 {
 	perror("getLine");
 	exit(EXIT_FAILURE);

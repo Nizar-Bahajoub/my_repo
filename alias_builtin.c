@@ -47,7 +47,7 @@ int createKeyValuePair(Alias **Alias_list, char *name, char *equals)
 {
 	Alias *list_copy = *Alias_list;
 	int i, b = 0, j, value_length;
-	char *main_command, *new_command = malloc((strlen(name) + 1) * sizeof(char));
+	char *mainCmd, *new_command = malloc((strlen(name) + 1) * sizeof(char));
 
 	while (name[b] != '=')
 	{
@@ -60,21 +60,21 @@ int createKeyValuePair(Alias **Alias_list, char *name, char *equals)
 
 	printf("Now allocating memory for value_command equals = %s\n", equals);
 	value_length = strlen(equals) - strspn(equals, "'\"");
-	main_command = malloc(sizeof(char) * (value_length + 1));
+	mainCmd = malloc(sizeof(char) * (value_length + 1));
 
 	printf("Now Entering Initialization loop\n");
 	for (i = 0, j = 0; equals[i] != '\0'; i++)
 	{
 		if (equals[i] != '\'' && equals[i] != '"')
 		{
-			main_command[j] = equals[i];
+			mainCmd[j] = equals[i];
 			j++;
 		}
 	}
-	main_command[j] = '\0';
+	mainCmd[j] = '\0';
 
-	printf(" Before adding : name = %s, value = %s\n", new_command, main_command);
-	*Alias_list = addAlias(&list_copy, new_command, main_command);
+	printf(" Before adding : name = %s, value = %s\n", new_command, mainCmd);
+	*Alias_list = addAlias(&list_copy, new_command, mainCmd);
 
 	return (0);
 }

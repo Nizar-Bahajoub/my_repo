@@ -30,7 +30,7 @@ int changeDirectory(char **args, int line_num)
 {
 	char *new_dir, *old_dir;
 	char cwd[1024];
-	char *cd_err = cd_error(args);
+	char *cd_err = getErrorDirectory(args);
 
 	if (args[1] == NULL || strcmp(args[1], "~") == 0)
 		new_dir = getEnvironmentVariable("HOME");
@@ -49,7 +49,7 @@ int changeDirectory(char **args, int line_num)
 
 	if (chdir(new_dir) != 0)
 	{
-		print_error(args[0], cd_err, line_num);
+		printErrorMessage(args[0], cd_err, line_num);
 		return (1);
 	}
 
@@ -152,13 +152,13 @@ int unsetEnvironmentVariable(char **args)
 
 
 /**
- * _exit - Exits the shell
+ * exitShell - Exits the shell
  * @args: Command and arguments
  * Return: Always 0 (Success)
  */
-int _exit(char **args)
+int exitShell(char **args)
 {
-	unsigned int getExitStatusus = 0;
+	unsigned int getExitStatus = 0;
 	unsigned int max = 1 << (sizeof(int) * 8 - 1);
 	int i = 0, len = 10;
 
@@ -176,7 +176,7 @@ int _exit(char **args)
 			{
 				if (i <= len && args[1][i] >= '0' && args[1][i] <= '9')
 				{
-					getExitStatusus = (getExitStatusus * 10) + (args[1][i] - '0');
+					getExitStatus = (getExitStatus * 10) + (args[1][i] - '0');
 				}
 				else
 				{
@@ -186,12 +186,12 @@ int _exit(char **args)
 				i++;
 			}
 
-			if (getExitStatusus > max - 1)
+			if (getExitStatus > max - 1)
 			{
 				printf("Invalid exit status.\n");
 				return (-1);
 			}
 		}
 	}
-	exit(getExitStatusus);
+	exit(getExitStatus);
 }

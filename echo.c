@@ -52,7 +52,7 @@ int echoCommand(char **args)
 	{
 		if (strcmp(args[i], "$$") == 0)
 		{
-			echo_ppid(printed_chars);
+			echoParentProcessID(printed_chars);
 		}
 		else if (strcmp(args[i], "$?") == 0)
 		{
@@ -60,7 +60,7 @@ int echoCommand(char **args)
 		}
 		else if (args[i][0] == '$')
 		{
-			echo_env(printed_chars, args, i);
+			echoEnvironmentVariable(printed_chars, args, i);
 		}
 		else
 		{
@@ -78,11 +78,11 @@ int echoCommand(char **args)
 }
 
 /**
- * echo_ppid - Prints the process ID of the parent process
+ * echoParentProcessID - Prints the process ID of the parent process
  * @printed_chars: Character count
  * Return: Always 0 (Success)
  */
-int echo_ppid(int printed_chars)
+int echoParentProcessID(int printed_chars)
 {
 	int len;
 	pid_t pid;
@@ -108,27 +108,27 @@ int echo_ppid(int printed_chars)
  */
 int echoExit(int printed_chars)
 {
-	int getExitStatusus = getExitStatus();
-	char *getExitStatusus_str = _itoa(getExitStatusus);
+	int getExitStatus = getExitStatus();
+	char *getExitStatus_str = _itoa(getExitStatus);
 
-	if (getExitStatusus_str != NULL)
+	if (getExitStatus_str != NULL)
 	{
-		int len = strlen(getExitStatusus_str);
+		int len = strlen(getExitStatus_str);
 
-		printed_chars += write(STDOUT_FILENO, getExitStatusus_str, len);
-		free(getExitStatusus_str);
+		printed_chars += write(STDOUT_FILENO, getExitStatus_str, len);
+		free(getExitStatus_str);
 	}
 	return (0);
 }
 
 /**
- * echo_env - Prints the value of an environment variable
+ * echoEnvironmentVariable - Prints the value of an environment variable
  * @printed_chars: Character count
  * @args: Arguments
  * @i: Iterate variable
  * Return: Always 0 (Success)
  */
-int echo_env(int printed_chars, char **args, int i)
+int echoEnvironmentVariable(int printed_chars, char **args, int i)
 {
 	int len;
 	char *value;

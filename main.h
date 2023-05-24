@@ -15,7 +15,7 @@
 
 /**-- Global environment -- */
 extern char **environ;
-extern int getExitStatusus;
+extern int getExitStatus;
 
 
 /**-- MACROS var envirement -- **/

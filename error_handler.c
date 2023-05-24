@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * print_error - Prints an error message to stderr
+ * printErrorMessage - Prints an error message to stderr
  * @cmd: First argument
  * @msg: Error message
  * @line_num: Line number to track error
  * Return: Always 0 (Success)
  */
-void print_error(const char *cmd, const char *msg, int line_num)
+void printErrorMessage(const char *cmd, const char *msg, int line_num)
 {
 	const char *shell_name = "hsh";
 	const char *separator = ": ";
@@ -46,11 +46,11 @@ void print_error(const char *cmd, const char *msg, int line_num)
 
 
 /**
- * cd_error - Creates an error message for cd command
+ * getErrorDirectory - Creates an error message for cd command
  * @args: Arguments
  * Return: Pointer to the error message
  */
-char *cd_error(char **args)
+char *getErrorDirectory(char **args)
 {
 	char *error_message = (char *)malloc(100 * sizeof(char));
 

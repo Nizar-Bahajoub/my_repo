@@ -30,7 +30,7 @@ int setAlias(char **args)
 		{
 			while (list_copy != NULL)
 			{
-				if (strcmp(args[i], list_copy->main_command) == 0)
+				if (strcmp(args[i], list_copy->mainCmd) == 0)
 				{
 					printAliasList(list_copy);
 					break;
