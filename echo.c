@@ -43,39 +43,40 @@ char *_itoa(int value)
  * @args: Command and arguments
  * Return: Number of characters printed
  */
-int echoCommand(char **args)
+int echoCommand(char **args, int lineNum)
 {
-	int i, len;
-	int printed_chars = 0;
+    int i, len;
+    int printed_chars = 0;
 
-	for (i = 1; args[i] != NULL && i < MAX_ARGS - 1; i++)
-	{
-		if (strcmp(args[i], "$$") == 0)
-		{
-			echoParentProcessID(printed_chars);
-		}
-		else if (strcmp(args[i], "$?") == 0)
-		{
-			echoExit(printed_chars);
-		}
-		else if (args[i][0] == '$')
-		{
-			echoEnvironmentVariable(printed_chars, args, i);
-		}
-		else
-		{
-			len = strlen(args[i]);
-			printed_chars += write(STDOUT_FILENO, args[i], len);
-			printed_chars += len;
-		}
-		if (args[i + 1] != NULL)
-		{
-			printed_chars += write(STDOUT_FILENO, " ", 1);
-			printed_chars++;
-		}
-	}
-	return (printed_chars);
+    for (i = 1; args[i] != NULL && i < MAX_ARGS - 1; i++)
+    {
+        if (strcmp(args[i], "$$") == 0)
+        {
+            echoParentProcessID(printed_chars);
+        }
+        else if (strcmp(args[i], "$?") == 0)
+        {
+            echoExit(printed_chars);
+        }
+        else if (args[i][0] == '$')
+        {
+            echoEnvironmentVariable(printed_chars, args, i);
+        }
+        else
+        {
+            len = strlen(args[i]);
+            printed_chars += write(STDOUT_FILENO, args[i], len);
+            printed_chars += len;
+        }
+        if (args[i + 1] != NULL)
+        {
+            printed_chars += write(STDOUT_FILENO, " ", 1);
+            printed_chars++;
+        }
+    }
+    return printed_chars;
 }
+
 
 /**
  * echoParentProcessID - Prints the process ID of the parent process
