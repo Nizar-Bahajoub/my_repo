@@ -47,7 +47,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		cmd = argv;
 		while (*cmd != NULL)
 		{
-			executeCommand(cmd, line_num);
+			executeCommand(*cmd, line_num);
 			cmd++;
 		}
 
