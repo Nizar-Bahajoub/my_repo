@@ -1,4 +1,4 @@
-#ifndef MAIN_H
+#ifndef MAIN_Hi
 #define MAIN_H
 #define _POSIX_C_SOURCE 200809L
 #define _XOPEN_SOURCE 700
@@ -74,7 +74,7 @@ int check_path(char **args);
 char *_getenv(const char *name);
 char *get_dir();
 int my_unsetenv(char **args);
-linked_path *link_path(void);
+LinkedPath *link_path(void);
 
 /** the_Execute_Functions */
 int setEnvironmentVariable(const char *name, const char *value, int overwrite);
