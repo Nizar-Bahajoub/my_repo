@@ -1,5 +1,6 @@
 #ifndef MAIN_Hi
 #define MAIN_H
+
 #define _POSIX_C_SOURCE 200809L
 #define _XOPEN_SOURCE 700
 
@@ -88,7 +89,7 @@ int executeCommandCommand(char *command, int lineNum);
 int executeCommandWithPath(char **args);
 ssize_t getLine(char **buffer, size_t *bufsize, int fd);
 int changeDirectory(char **args, int lineNum);
-int echoCommand(char **args, int lineNum)
+int echoCommand(char **args, int lineNum);
 int runChildProcess(char **args);
 int runParentProcess(void);
 int getExitStatus(void);

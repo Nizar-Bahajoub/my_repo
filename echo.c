@@ -74,7 +74,7 @@ int echoCommand(char **args, int lineNum)
             printed_chars++;
         }
     }
-    return printed_chars;
+    return (printed_chars);
 }
 
 
