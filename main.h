@@ -92,7 +92,7 @@ int echoCommand(char **args, int lineNum)
 int runChildProcess(char **args);
 int runParentProcess(void);
 int getExitStatus(void);
-int echoCommand(char **args, int lineNum)
+int echoCommand(char **args, int lineNum);
 char *stringTokenize(char *command, const char *delim);
 int tokenizeCommand(char *command, char **args);
 int isBuiltInCommand(char **args, int lineNum);
