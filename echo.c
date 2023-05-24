@@ -39,11 +39,11 @@ char *_itoa(int value)
 }
 
 /**
- * my_echo - Prints the given arguments to stdout
+ * echoCommand - Prints the given arguments to stdout
  * @args: Command and arguments
  * Return: Number of characters printed
  */
-int my_echo(char **args)
+int echoCommand(char **args)
 {
 	int i, len;
 	int printed_chars = 0;
@@ -108,15 +108,15 @@ int echo_ppid(int printed_chars)
  */
 int echo_exit(int printed_chars)
 {
-	int exit_status = exit_stat();
-	char *exit_status_str = _itoa(exit_status);
+	int getExitStatusus = getExitStatus();
+	char *getExitStatusus_str = _itoa(getExitStatusus);
 
-	if (exit_status_str != NULL)
+	if (getExitStatusus_str != NULL)
 	{
-		int len = _strlen(exit_status_str);
+		int len = _strlen(getExitStatusus_str);
 
-		printed_chars += write(STDOUT_FILENO, exit_status_str, len);
-		free(exit_status_str);
+		printed_chars += write(STDOUT_FILENO, getExitStatusus_str, len);
+		free(getExitStatusus_str);
 	}
 	return (0);
 }
@@ -135,7 +135,7 @@ int echo_env(int printed_chars, char **args, int i)
 	char *var_name;
 
 	var_name = args[i] + 1;
-	value = _getenv(var_name);
+	value = getEnvironmentVariable(var_name);
 
 	if (value != NULL)
 	{

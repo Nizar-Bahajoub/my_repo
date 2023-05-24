@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * my_alias - Handles the "alias" command
+ * setAlias - Handles the "Alias" command
  * @args: List of commands
  * Return: Always 0 (Success)
  */
-int my_alias(char **args)
+int setAlias(char **args)
 {
 	int i = 1;
-	alias *list_copy = get_alias_list();
+	Alias *list_copy = get_Alias_list();
 	char *equals;
 
 	if (args[i] == NULL)
@@ -17,22 +17,22 @@ int my_alias(char **args)
 			printf("NULL\n");
 		else
 		{
-			printf("Wants to enter print_alias_list\n");
-			print_alias_list(list_copy);
+			printf("Wants to enter printAliasList\n");
+			printAliasList(list_copy);
 		}
 		return (0);
 	}
 	for (i = 1; args[i] != NULL; i++)
 	{
 		equals = strchr(args[i], '=');
-		list_copy = get_alias_list();
+		list_copy = get_Alias_list();
 		if (equals == NULL)
 		{
 			while (list_copy != NULL)
 			{
 				if (strcmp(args[i], list_copy->main_command) == 0)
 				{
-					print_alias_list(list_copy);
+					printAliasList(list_copy);
 					break;
 				}
 				list_copy = list_copy->next;
@@ -40,20 +40,20 @@ int my_alias(char **args)
 		}
 		else
 		{
-			printf("Calling create_keyvalue_pair function. args = %s\n", args[i]);
-			create_keyvalue_pair(&list_copy, args[i], equals);
+			printf("Calling createKeyValuePair function. args = %s\n", args[i]);
+			createKeyValuePair(&list_copy, args[i], equals);
 		}
 	}
 	return (0);
 }
 
 /**
- * get_alias_list - Returns the alias list
- * Return: The alias list
+ * get_Alias_list - Returns the Alias list
+ * Return: The Alias list
  */
-alias *get_alias_list(void)
+Alias *get_Alias_list(void)
 {
-	alias *alias_list = NULL;
+	Alias *Alias_list = NULL;
 
-	return (alias_list);
+	return (Alias_list);
 }

@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * execute_with_path - Executes a command from the path
+ * executeCommand_with_path - executeCommands a command from the path
  * @args: Array of tokenized commands
  * Return: The process id
  */
-int execute_with_path(char **args)
+int executeCommand_with_path(char **args)
 {
-	linked_path *temp = link_path();
+	LinkedPath *temp = linkPath();
 	char fullpath[1024];
 
 	while (temp != NULL)
@@ -23,13 +23,13 @@ int execute_with_path(char **args)
 }
 
 /**
- * check_path - Checks for a command in the path
+ * checkPath - Checks for a command in the path
  * @args: Command to check
  * Return: 1 if command found, -1 otherwise
  */
-int check_path(char **args)
+int checkPath(char **args)
 {
-	linked_path *temp = link_path();
+	LinkedPath *temp = linkPath();
 	char fullpath[1024];
 
 	while (temp != NULL)
@@ -45,30 +45,30 @@ int check_path(char **args)
 }
 
 /**
- * link_path - Creates a linked list for the path
+ * linkPath - Creates a linked list for the path
  * Return: A pointer to the first node
  */
-linked_path *link_path(void)
+LinkedPath *linkPath(void)
 {
 	char *dir;
 	char *path;
 	char *pathDup;
-	linked_path *head;
-	linked_path *currentNode = (linked_path *)malloc(sizeof(linked_path));
+	LinkedPath *head;
+	LinkedPath *currentNode = (LinkedPath *)malloc(sizeof(LinkedPath));
 
 	head = currentNode;
 
-	path = _getenv("PATH");
+	path = getEnvironmentVariable("PATH");
 	pathDup = _strdup(path);
-	dir = str_tok(pathDup, ":");
+	dir = stringTokenize(pathDup, ":");
 	currentNode->dir = _strdup(dir);
 
 	while (dir != NULL)
 	{
-		dir = str_tok(NULL, ":");
+		dir = stringTokenize(NULL, ":");
 		if (dir != NULL)
 		{
-			currentNode->next = (linked_path *)malloc(sizeof(linked_path));
+			currentNode->next = (LinkedPath *)malloc(sizeof(LinkedPath));
 			currentNode = currentNode->next;
 			currentNode->dir = _strdup(dir);
 		}

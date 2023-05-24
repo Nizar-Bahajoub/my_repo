@@ -15,7 +15,7 @@
 
 /**-- Global environment -- */
 extern char **environ;
-extern int exit_status;
+extern int getExitStatusus;
 
 
 /**-- MACROS var envirement -- **/
@@ -25,7 +25,7 @@ extern int exit_status;
 
 
 /**
- * --struct linked_path - This is a linked list containing
+ * --struct LinkedPath - This is a linked list containing
  * ----Each diretory in the path
  * @dir:  a directory Path
  * @next:   a pointer to the next director
@@ -38,7 +38,7 @@ typedef struct LinkedPath
 } LinkedPath;
 
 /**
- * struct alias This is a linked list contaning
+ * struct Alias This is a linked list contaning
  * ---------------Each diretory in path
  *
  * @maincommand:  the main command
@@ -60,32 +60,32 @@ void freePath(LinkedPath *path);
 
 /**-- Alias_handler_functions --*/
 int setAlias(char **args);
-int createKeyValuePair(Alias **aliasList, char *args, char *equals);
+int createKeyValuePair(Alias **AliasList, char *args, char *equals);
 Alias *addAlias(Alias **head, char *newCmd, char *mainCmd);
 int printAliasList(Alias *head);
 char *checkAlias(char *newCmd);
-int executeAlias(char *mainCmd, char **args);
+int executeCommandAlias(char *mainCmd, char **args);
 Alias *getAliasList(void);
 
 /**--  the Environ_functions-- */
-int my_setenv(const char *name, const char *value, int overwrite);
-int my_env(void);
-int check_path(char **args);
-char *_getenv(const char *name);
-char *get_dir();
-int my_unsetenv(char **args);
-LinkedPath *link_path(void);
-
-/** the_Execute_Functions */
 int setEnvironmentVariable(const char *name, const char *value, int overwrite);
 int showEnvironment(void);
 int checkPath(char **args);
-char *getDirectory(void);
+char *getEnvironmentVariable(const char *name);
+char *getDiretory();
 int unsetEnvironmentVariable(char **args);
 LinkedPath *linkPath(void);
 
-int executeCommand(char *command, int lineNum);
-int executeWithPath(char **args);
+/** the_executeCommand_Functions */
+int setEnvironmentVariableVariable(const char *name, const char *value, int overwrite);
+int showEnvironment(void);
+int checkPath(char **args);
+char *getDirectory(void);
+int unsetEnvironmentVariableVariable(char **args);
+LinkedPath *linkPath(void);
+
+int executeCommandCommand(char *command, int lineNum);
+int executeCommandWithPath(char **args);
 ssize_t getLine(char **buffer, size_t *bufsize, int fd);
 int changeDirectory(char **args, int lineNum);
 int echoCommand(char **args);

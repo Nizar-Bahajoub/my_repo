@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * my_env - Prints the environment variables
+ * showEnvironment - Prints the environment variables
  *
  * Return: Always 0 (Success)
  */
-int my_env(void)
+int showEnvironment(void)
 {
 	char **env = environ;
 
@@ -21,27 +21,27 @@ int my_env(void)
 
 
 /**
- * my_cd - Changes the current directory
+ * changeDirectory - Changes the current directory
  * @args: Arguments passed
  * @line_num: Command count
  * Return: Always 0 (Success)
  */
-int my_cd(char **args, int line_num)
+int changeDirectory(char **args, int line_num)
 {
 	char *new_dir, *old_dir;
 	char cwd[1024];
 	char *cd_err = cd_error(args);
 
 	if (args[1] == NULL || _strcmp(args[1], "~") == 0)
-		new_dir = _getenv("HOME");
+		new_dir = getEnvironmentVariable("HOME");
 	else if (_strcmp(args[1], "-") == 0)
-		new_dir = _getenv("OLDPWD");
+		new_dir = getEnvironmentVariable("OLDPWD");
 	else
 		new_dir = args[1];
 
-	old_dir = _getenv("PWD");
+	old_dir = getEnvironmentVariable("PWD");
 
-	if (my_setenv("OLDPWD", old_dir, 1) != 0)
+	if (setEnvironmentVariable("OLDPWD", old_dir, 1) != 0)
 	{
 		perror("Could not set OLDPWD environment variable");
 		return (1);
@@ -58,7 +58,7 @@ int my_cd(char **args, int line_num)
 		perror("Could not get current directory");
 		return (1);
 	}
-	if (my_setenv("PWD", cwd, 1) != 0)
+	if (setEnvironmentVariable("PWD", cwd, 1) != 0)
 	{
 		perror("Could not set PWD environment variable");
 		return (1);
@@ -69,13 +69,13 @@ int my_cd(char **args, int line_num)
 
 
 /**
- * my_setenv - Sets the value of an environment variable
+ * setEnvironmentVariable - Sets the value of an environment variable
  * @name: Name of the environment variable
  * @value: Environment value
  * @overwrite: Replace variable
  * Return: Always 0 (Success)
  */
-int my_setenv(const char *name, const char *value, int overwrite)
+int setEnvironmentVariable(const char *name, const char *value, int overwrite)
 {
 	int i, j;
 	int len;
@@ -106,7 +106,7 @@ int my_setenv(const char *name, const char *value, int overwrite)
 	}
 	env[i + j + 1] = '\0';
 
-	if (overwrite == 0 && _getenv(name) != NULL)
+	if (overwrite == 0 && getEnvironmentVariable(name) != NULL)
 	{
 		return (0);
 	}
@@ -119,11 +119,11 @@ int my_setenv(const char *name, const char *value, int overwrite)
 }
 
 /**
- * my_unsetenv - Unsets an environment variable
+ * unsetEnvironmentVariable - Unsets an environment variable
  * @args: Command and arguments
  * Return: Always 0 (Success)
  */
-int my_unsetenv(char **args)
+int unsetEnvironmentVariable(char **args)
 {
 	int i, j;
 	char *name = args[1];
@@ -158,7 +158,7 @@ int my_unsetenv(char **args)
  */
 int my_exit(char **args)
 {
-	unsigned int exit_status = 0;
+	unsigned int getExitStatusus = 0;
 	unsigned int max = 1 << (sizeof(int) * 8 - 1);
 	int i = 0, len = 10;
 
@@ -176,7 +176,7 @@ int my_exit(char **args)
 			{
 				if (i <= len && args[1][i] >= '0' && args[1][i] <= '9')
 				{
-					exit_status = (exit_status * 10) + (args[1][i] - '0');
+					getExitStatusus = (getExitStatusus * 10) + (args[1][i] - '0');
 				}
 				else
 				{
@@ -186,12 +186,12 @@ int my_exit(char **args)
 				i++;
 			}
 
-			if (exit_status > max - 1)
+			if (getExitStatusus > max - 1)
 			{
 				printf("Invalid exit status.\n");
 				return (-1);
 			}
 		}
 	}
-	exit(exit_status);
+	exit(getExitStatusus);
 }

@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * get_dir - Prints the working directory
+ * getDiretory - Prints the working directory
  * Return: The working directory
  */
-char *get_dir()
+char *getDiretory()
 {
 	char *cwd = malloc(sizeof(char) * 1024);
 
@@ -27,11 +27,11 @@ char *get_dir()
 }
 
 /**
- * _getenv - Checks for a variable in the environment
+ * getEnvironmentVariable - Checks for a variable in the environment
  * @name: Pointer to an array of characters
  * Return: Pointer if success, NULL if failed
  */
-char *_getenv(const char *name)
+char *getEnvironmentVariable(const char *name)
 {
 	int i = 0;
 	char *envi_ron;
@@ -55,13 +55,13 @@ char *_getenv(const char *name)
 }
 
 /**
- * get_line - Reads a line from input stream
+ * getLine - Reads a line from input stream
  * @buffer: Pointer to hold command and arguments
  * @bufsize: Size of buffer
  * @fd: File descriptor of input stream
  * Return: Length of the string buffer
  */
-ssize_t get_line(char **buffer, size_t *bufsize, int fd)
+ssize_t getLine(char **buffer, size_t *bufsize, int fd)
 {
 	static size_t line_buffer_size = 1024;
 	ssize_t read_bytes;
@@ -108,6 +108,6 @@ ssize_t get_line(char **buffer, size_t *bufsize, int fd)
  */
 void not_buff(void)
 {
-	perror("get_line");
+	perror("getLine");
 	exit(EXIT_FAILURE);
 }

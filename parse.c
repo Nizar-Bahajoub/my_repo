@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * str_tok - Entry point
+ * stringTokenize - Entry point
  * @command: command line
  * @delim: delimiter
  * Return: current token
  */
-char *str_tok(char *command, const char *delim)
+char *stringTokenize(char *command, const char *delim)
 {
 	static char *lastToken;
 	char *currentToken;
@@ -41,15 +41,15 @@ char *str_tok(char *command, const char *delim)
 }
 
 /**
- * tokenize - Entry point
+ * tokenizeCommand - Entry point
  * @command: string passed
  * @args: arguments passed
  * Return: Number of tokens
  */
-int tokenize(char *command, char **args)
+int tokenizeCommand(char *command, char **args)
 {
 	int i = 0;
-	char *token = str_tok(command, " \n\t\r\a");
+	char *token = stringTokenize(command, " \n\t\r\a");
 	char *trimmedToken;
 
 	while (token != NULL && i < MAXARGS - 1)
@@ -70,7 +70,7 @@ int tokenize(char *command, char **args)
 			args[i++] = trimmedToken;
 		}
 
-		token = str_tok(NULL, " \n\t\r\a");
+		token = stringTokenize(NULL, " \n\t\r\a");
 	}
 
 	return i;

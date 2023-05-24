@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * _freeargs - Frees the arguments
+ * freeArguments - Frees the arguments
  * @args: Tokenized arguments
  * Return: void
  */
-void _freeargs(char **args)
+void freeArguments(char **args)
 {
 	int index;
 	int len = 0;
@@ -20,13 +20,13 @@ void _freeargs(char **args)
 }
 
 /**
- * _freepath - Frees the path
+ * freePath - Frees the path
  * @path: Pointer to the linked path
  * Return: void
  */
-void _freepath(linked_path *path)
+void freePath(LinkedPath *path)
 {
-	linked_path *temp;
+	LinkedPath *temp;
 
 	while (path != NULL)
 	{
@@ -38,10 +38,10 @@ void _freepath(linked_path *path)
 }
 
 /**
- * _freeenv - Frees the environment variables
+ * freeEnvironment - Frees the environment variables
  * Return: void
  */
-void _freeenv(void)
+void freeEnvironment(void)
 {
 	int index;
 

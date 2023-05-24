@@ -1,22 +1,22 @@
 #include "main.h"
 
 /**
- * execute - Executes a command
+ * executeCommand - executeCommands a command
  * @command: Command passed
  * @line_num: Line number to track commands
  * Return: ID of fork
  */
-int execute(char *command, int line_num)
+int executeCommand(char *command, int line_num)
 {
 	char *args[MAXARGS];
 	char command_path[MAX_PATH_LENGTH];
 	pid_t pid;
 	int i;
 
-	i = tokenize(command, args);
+	i = tokenizeCommand(command, args);
 	args[i] = NULL;
 
-	if (built_ins(args, line_num) || built_ins2(args, line_num))
+	if (isBuiltInCommand(args, line_num) || isBuiltInCommand2(args, line_num))
 		return (0);
 	if (access(args[0], X_OK) == -1)
 	{
@@ -35,11 +35,11 @@ int execute(char *command, int line_num)
 		exit(EXIT_FAILURE);
 
 	if (pid != 0)
-		run_parent();
+		runParentProcess();
 
 	if (pid == 0 && args[0][0] != '\0')
 	{
-		run_child(args);
+		runChildProcess(args);
 	}
 
 	return (0);
@@ -47,11 +47,11 @@ int execute(char *command, int line_num)
 
 
 /**
- * run_child - Executes the child process
+ * runChildProcess - executeCommands the child process
  * @args: Command passed
  * Return: ID of fork
  */
-int run_child(char **args)
+int runChildProcess(char **args)
 {
 	if (args[0][0] == '/' || args[0][0] == '.')
 	{
@@ -61,9 +61,9 @@ int run_child(char **args)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else if (check_path(args) == 1)
+	else if (checkPath(args) == 1)
 	{
-		execute_with_path(args);
+		executeCommand_with_path(args);
 	}
 	else
 	{
@@ -74,31 +74,31 @@ int run_child(char **args)
 }
 
 /**
- * run_parent - Executes the parent process
+ * runParentProcess - executeCommands the parent process
  *
  * Return: ID of fork
  */
-int run_parent(void)
+int runParentProcess(void)
 {
-	exit_status();
+	getExitStatusus();
 	return (0);
 }
 
 /**
- * exit_status - Retrieves the exit status of the child process
+ * getExitStatusus - Retrieves the exit status of the child process
  *
  * Return: Exit status
  */
-int exit_status(void)
+int getExitStatusus(void)
 {
 	int status;
-	static int exit_status;
+	static int getExitStatusus;
 
 	wait(&status);
 
 	if (WIFEXITED(status))
 	{
-		exit_status = WEXITSTATUS(status);
+		getExitStatusus = WEXITSTATUS(status);
 	}
-	return (exit_status);
+	return (getExitStatusus);
 }

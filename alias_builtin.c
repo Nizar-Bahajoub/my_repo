@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * check_alias - Checks if an alias exists
+ * checkAlias - Checks if an Alias exists
  * @neww: List of arguments
- * Return: Name of alias if it exists, NULL otherwise
+ * Return: Name of Alias if it exists, NULL otherwise
  */
-char *check_alias(char *neww)
+char *checkAlias(char *neww)
 {
 	Alias *temp = getAliasList();
 
@@ -21,12 +21,12 @@ char *check_alias(char *neww)
 }
 
 /**
- * execute_alias - Executes an alias command
+ * executeCommandAlias - executeCommands an Alias command
  * @main: Main command
  * @args: List of arguments
  * Return: Always 0 (Success)
  */
-int execute_alias(char *main, char **args)
+int executeCommandAlias(char *main, char **args)
 {
 	if (execve(main, args, environ) == -1)
 	{
@@ -37,15 +37,15 @@ int execute_alias(char *main, char **args)
 }
 
 /**
- * create_keyvalue_pair - Creates an alias key-value pair
+ * createKeyValuePair - Creates an Alias key-value pair
  * @name: Argument to be initialized into the name_command
- * @alias_list: Pointer to the alias list
+ * @Alias_list: Pointer to the Alias list
  * @equals: Pointer to the '=' in the args
  * Return: 0 on success, -1 on failure
  */
-int create_keyvalue_pair(Alias **alias_list, char *name, char *equals)
+int createKeyValuePair(Alias **Alias_list, char *name, char *equals)
 {
-	Alias *list_copy = *alias_list;
+	Alias *list_copy = *Alias_list;
 	int i, b = 0, j, value_length;
 	char *main_command, *new_command = malloc((strlen(name) + 1) * sizeof(char));
 
@@ -74,21 +74,21 @@ int create_keyvalue_pair(Alias **alias_list, char *name, char *equals)
 	main_command[j] = '\0';
 
 	printf(" Before adding : name = %s, value = %s\n", new_command, main_command);
-	*alias_list = addAlias(&list_copy, new_command, main_command);
+	*Alias_list = addAlias(&list_copy, new_command, main_command);
 
 	return (0);
 }
 
 /**
- * add_alias - Adds an alias to the list
- * @head: Pointer to the head of the alias list
+ * addAlias - Adds an Alias to the list
+ * @head: Pointer to the head of the Alias list
  * @new: Name of the new command
  * @main: Name of the main command
- * Return: Pointer to the head of the alias list
+ * Return: Pointer to the head of the Alias list
  */
 Alias *addAlias(Alias **head, char *new, char *main)
 {
-	Alias *new_node = malloc(sizeof(alias));
+	Alias *new_node = malloc(sizeof(Alias));
 	Alias *temp;
 
 	new_node->mainCmd = strdup(main);
@@ -128,11 +128,11 @@ Alias *addAlias(Alias **head, char *new, char *main)
 }
 
 /**
- * print_alias_list - Prints the alias list
- * @head: Pointer to the head of the alias list
+ * printAliasList - Prints the Alias list
+ * @head: Pointer to the head of the Alias list
  * Return: Always 0 (Success)
  */
-int print_alias_list(Alias *head)
+int printAliasList(Alias *head)
 {
 	Alias *temp = head;
 

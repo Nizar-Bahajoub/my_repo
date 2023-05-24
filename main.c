@@ -40,16 +40,16 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (line_length == 1 && argv[0][0] == '\n')
 			continue;
 
-		/* Execute commands */
+		/* executeCommand commands */
 		cmd = argv;
 		while (*cmd != NULL)
 		{
-			execute(*cmd, line_num);
+			executeCommand(*cmd, line_num);
 			cmd++;
 		}
 
 		/* Free arguments */
-		_freeargs(argv);
+		freeArguments(argv);
 
 		line_num++;
 	}
