@@ -1,10 +1,9 @@
 #include "main.h"
-
 /**
- * built_ins - Checks if the command is a built-in command and executes it
- * @args: Command and arguments
- * @line_num: Execution count
- * Return: 1 if it's a built-in command, 0 otherwise
+ * built_ins - Entry point
+ * @args: command and arguments
+ * @line_num: execution count
+ * Return: Always 0 (Success)
  */
 int built_ins(char **args, int line_num)
 {
@@ -38,12 +37,11 @@ int built_ins(char **args, int line_num)
 	}
 	return (0);
 }
-
 /**
- * built_ins2 - Checks if the command is a built-in command and executes it
- * @args: Command and arguments
- * @line_num: Execution count (unused)
- * Return: 1 if it's a built-in command, 0 otherwise
+ * built_ins2 - Entry point
+ * @args: command and arguments
+ * @line_num: execution count
+ * Return: Always 0 (Success)
  */
 int built_ins2(char **args, int line_num __attribute__ ((unused)))
 {

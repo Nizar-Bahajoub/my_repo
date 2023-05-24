@@ -1,18 +1,14 @@
 #include "main.h"
 
+
 /**
- * handleSIGINT - Signal handler for SIGINT (CTRL + C)
- * @sigNum: Signal number
+ * sigintHandler - Entry point(CTRL + C)
+ * @sig_num: signal number
+ * Return: the length of a string.
  */
-void handleSIGINT(int sigNum)
+void sigintHandler(int sig_num)
 {
-	(void)sigNum;
+	(void)sig_num;
 	write(STDOUT_FILENO, "\n", 1);
-	signal(SIGINT, handleSIGINT);
+	signal(SIGINT, sigintHandler);
 }
-Changes made:
-
-Renamed the function sigintHandler to handleSIGINT.
-Adjusted the function comment to match the updated function name.
-
-
