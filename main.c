@@ -1,4 +1,4 @@
-#include "main.h"
+#include "main.h"  /* Include main header file */
 
 /**
  * main - Entry point
@@ -13,6 +13,7 @@ int main(int argc __attribute__((unused)), char **argv)
 	size_t buffer_size = 0;
 	ssize_t line_length;
 	int line_num = 1;
+	char *input_line = NULL;  /* Declare a separate variable for input line */
 	char **cmd;
 
 	while (true)
@@ -25,7 +26,9 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 
 		/* Read input line */
-		line_length = getline(&argv[0], &buffer_size, stdin);
+		/* Use input_line variable */
+		line_length = getline(&input_line, &buffer_size, stdin);
+
 		if (line_length == -1)
 		{
 			/* Check for end of input */
@@ -37,7 +40,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 
 		/* Skip empty lines */
-		if (line_length == 1 && argv[0][0] == '\n')
+		if (line_length == 1 && input_line[0] == '\n')
 			continue;
 
 		/* executeCommand commands */
@@ -53,6 +56,8 @@ int main(int argc __attribute__((unused)), char **argv)
 
 		line_num++;
 	}
+
+	free(input_line);  /* Free the input line buffer */
 
 	return 0;
 }
