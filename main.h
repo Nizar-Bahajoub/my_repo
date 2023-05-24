@@ -1,6 +1,5 @@
 #ifndef MAIN_Hi
 #define MAIN_H
-
 #define _POSIX_C_SOURCE 200809L
 #define _XOPEN_SOURCE 700
 
@@ -16,7 +15,7 @@
 
 /**-- Global environment -- */
 extern char **environ;
-extern int getExitStatus(void);
+extern int exit_status;
 
 
 /**-- MACROS var envirement -- **/
@@ -85,7 +84,7 @@ char *getDirectory(void);
 int unsetEnvironmentVariableVariable(char **args);
 LinkedPath *linkPath(void);
 
-int executeCommandCommand(char *command, int lineNum);
+int executeCommand(char *command, int lineNum);
 int executeCommandWithPath(char **args);
 ssize_t getLine(char **buffer, size_t *bufsize, int fd);
 int changeDirectory(char **args, int lineNum);
@@ -93,7 +92,7 @@ int echoCommand(char **args);
 int runChildProcess(char **args);
 int runParentProcess(void);
 int getExitStatus(void);
-int echoCommand(char **args, int lineNum);
+
 char *stringTokenize(char *command, const char *delim);
 int tokenizeCommand(char *command, char **args);
 int isBuiltInCommand(char **args, int lineNum);
