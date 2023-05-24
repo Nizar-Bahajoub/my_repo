@@ -8,7 +8,7 @@
  */
 int executeCommand(char *command, int line_num)
 {
-	char *args[MAXARGS];
+	char *args[MAX_ARGS];
 	char command_path[MAX_PATH_LENGTH];
 	pid_t pid;
 	int i;
@@ -20,8 +20,8 @@ int executeCommand(char *command, int line_num)
 		return (0);
 	if (access(args[0], X_OK) == -1)
 	{
-		_strcpy(command_path, "/bin/");
-		_strcat(command_path, args[0]);
+		strcpy(command_path, "/bin/");
+		strcat(command_path, args[0]);
 		if (access(command_path, X_OK) == -1)
 		{
 			print_error(args[0], "not found", line_num);

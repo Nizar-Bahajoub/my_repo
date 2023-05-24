@@ -11,27 +11,27 @@ int isBuiltInCommand(char **args, int line_num)
 	if (args[0] == NULL)
 		return (1);
 
-	if (_strcmp(args[0], "exit") == 0)
+	if (strcmp(args[0], "exit") == 0)
 	{
-		my_exit(args);
+		_exit(args);
 		exit(EXIT_SUCCESS);
 	}
-	if (_strcmp(args[0], "env") == 0)
+	if (strcmp(args[0], "env") == 0)
 	{
 		showEnvironment();
 		return (1);
 	}
-	if (_strcmp(args[0], "cd") == 0)
+	if (strcmp(args[0], "cd") == 0)
 	{
 		changeDirectory(args, line_num);
 		return (1);
 	}
-	if (_strcmp(args[0], "setenv") == 0)
+	if (strcmp(args[0], "setenv") == 0)
 	{
 		setEnvironmentVariable(args[1], args[2], 1);
 		return (1);
 	}
-	if (_strcmp(args[0], "unsetenv") == 0)
+	if (strcmp(args[0], "unsetenv") == 0)
 	{
 		unsetEnvironmentVariable(args);
 		return (1);
@@ -47,13 +47,13 @@ int isBuiltInCommand(char **args, int line_num)
  */
 int built_ins2(char **args, int line_num __attribute__ ((unused)))
 {
-	if (_strcmp(args[0], "Alias") == 0)
+	if (strcmp(args[0], "Alias") == 0)
 	{
 		setAlias(args);
 		return (1);
 	}
 
-	if (_strcmp(args[0], "echo") == 0)
+	if (strcmp(args[0], "echo") == 0)
 	{
 		echoCommand(args);
 		write(STDOUT_FILENO, "\n", 1);

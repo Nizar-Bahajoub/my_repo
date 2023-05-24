@@ -11,7 +11,7 @@ int showEnvironment(void)
 
 	while (*env != NULL)
 	{
-		write(STDOUT_FILENO, *env, _strlen(*env));
+		write(STDOUT_FILENO, *env, strlen(*env));
 		write(STDOUT_FILENO, "\n", 1);
 		env++;
 	}
@@ -32,9 +32,9 @@ int changeDirectory(char **args, int line_num)
 	char cwd[1024];
 	char *cd_err = cd_error(args);
 
-	if (args[1] == NULL || _strcmp(args[1], "~") == 0)
+	if (args[1] == NULL || strcmp(args[1], "~") == 0)
 		new_dir = getEnvironmentVariable("HOME");
-	else if (_strcmp(args[1], "-") == 0)
+	else if (strcmp(args[1], "-") == 0)
 		new_dir = getEnvironmentVariable("OLDPWD");
 	else
 		new_dir = args[1];
@@ -86,7 +86,7 @@ int setEnvironmentVariable(const char *name, const char *value, int overwrite)
 		perror("Invalid arguments");
 		return (1);
 	}
-	len = _strlen(name) + _strlen(value) + 2;
+	len = strlen(name) + strlen(value) + 2;
 	env = malloc(len);
 	if (env == NULL)
 	{
@@ -127,7 +127,7 @@ int unsetEnvironmentVariable(char **args)
 {
 	int i, j;
 	char *name = args[1];
-	int len = _strlen(name);
+	int len = strlen(name);
 
 	if (args[1] == NULL || args[2] != NULL)
 	{
@@ -137,7 +137,7 @@ int unsetEnvironmentVariable(char **args)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if (_strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
 		{
 			for (j = i; environ[j] != NULL; j++)
 			{
@@ -152,11 +152,11 @@ int unsetEnvironmentVariable(char **args)
 
 
 /**
- * my_exit - Exits the shell
+ * _exit - Exits the shell
  * @args: Command and arguments
  * Return: Always 0 (Success)
  */
-int my_exit(char **args)
+int _exit(char **args)
 {
 	unsigned int getExitStatusus = 0;
 	unsigned int max = 1 << (sizeof(int) * 8 - 1);

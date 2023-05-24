@@ -18,7 +18,7 @@ char *stringTokenize(char *command, const char *delim)
 		return NULL;
 
 	currentToken = lastToken;
-	while (*currentToken != '\0' && _strchr(delim, *currentToken) != NULL)
+	while (*currentToken != '\0' && strchr(delim, *currentToken) != NULL)
 		currentToken++;
 
 	if (*currentToken == '\0')
@@ -28,7 +28,7 @@ char *stringTokenize(char *command, const char *delim)
 	}
 
 	lastToken = currentToken;
-	while (*lastToken != '\0' && _strchr(delim, *lastToken) == NULL)
+	while (*lastToken != '\0' && strchr(delim, *lastToken) == NULL)
 		lastToken++;
 
 	if (*lastToken != '\0')
@@ -52,7 +52,7 @@ int tokenizeCommand(char *command, char **args)
 	char *token = stringTokenize(command, " \n\t\r\a");
 	char *trimmedToken;
 
-	while (token != NULL && i < MAXARGS - 1)
+	while (token != NULL && i < MAX_ARGS - 1)
 	{
 		trimmedToken = token;
 		while (*trimmedToken == ' ')

@@ -11,7 +11,7 @@ char *checkAlias(char *neww)
 
 	while (temp != NULL)
 	{
-		if (_strcmp(neww, temp->newCmd) == 0)
+		if (strcmp(neww, temp->newCmd) == 0)
 		{
 			return (temp->newCmd);
 		}

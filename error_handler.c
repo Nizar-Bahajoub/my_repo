@@ -14,8 +14,8 @@ void print_error(const char *cmd, const char *msg, int line_num)
 	char line_number_str[16];
 	unsigned long int i = 0;
 	int j, n = line_num;
-	size_t shell_name_len = _strlen(shell_name);
-	size_t separator_len = _strlen(separator);
+	size_t shell_name_len = strlen(shell_name);
+	size_t separator_len = strlen(separator);
 
 	write(STDERR_FILENO, shell_name, shell_name_len);
 	write(STDERR_FILENO, separator, separator_len);
@@ -38,9 +38,9 @@ void print_error(const char *cmd, const char *msg, int line_num)
 	}
 
 	write(STDERR_FILENO, separator, separator_len);
-	write(STDERR_FILENO, cmd, _strlen(cmd));
+	write(STDERR_FILENO, cmd, strlen(cmd));
 	write(STDERR_FILENO, separator, separator_len);
-	write(STDERR_FILENO, msg, _strlen(msg));
+	write(STDERR_FILENO, msg, strlen(msg));
 	write(STDERR_FILENO, "\n", 1);
 }
 
@@ -59,11 +59,11 @@ char *cd_error(char **args)
 		return (NULL);
 	}
 
-	_strcpy(error_message, " can 't ");
-	_strcat(error_message, "  ");
-	_strcat(error_message, args[0]);
-	_strcat(error_message, "  to ");
-	_strcat(error_message, args[1]);
+	strcpy(error_message, " can 't ");
+	strcat(error_message, "  ");
+	strcat(error_message, args[0]);
+	strcat(error_message, "  to ");
+	strcat(error_message, args[1]);
 
 	return (error_message);
 }

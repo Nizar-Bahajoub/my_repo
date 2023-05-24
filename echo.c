@@ -48,15 +48,15 @@ int echoCommand(char **args)
 	int i, len;
 	int printed_chars = 0;
 
-	for (i = 1; args[i] != NULL && i < MAXARGS - 1; i++)
+	for (i = 1; args[i] != NULL && i < MAX_ARGS - 1; i++)
 	{
-		if (_strcmp(args[i], "$$") == 0)
+		if (strcmp(args[i], "$$") == 0)
 		{
 			echo_ppid(printed_chars);
 		}
-		else if (_strcmp(args[i], "$?") == 0)
+		else if (strcmp(args[i], "$?") == 0)
 		{
-			echo_exit(printed_chars);
+			echoExit(printed_chars);
 		}
 		else if (args[i][0] == '$')
 		{
@@ -64,7 +64,7 @@ int echoCommand(char **args)
 		}
 		else
 		{
-			len = _strlen(args[i]);
+			len = strlen(args[i]);
 			printed_chars += write(STDOUT_FILENO, args[i], len);
 			printed_chars += len;
 		}
@@ -93,7 +93,7 @@ int echo_ppid(int printed_chars)
 
 	if (pid_str != NULL)
 	{
-		len = _strlen(pid_str);
+		len = strlen(pid_str);
 
 		printed_chars += write(STDOUT_FILENO, pid_str, len);
 		free(pid_str);
@@ -102,18 +102,18 @@ int echo_ppid(int printed_chars)
 }
 
 /**
- * echo_exit - Prints the exit status of the previous command
+ * echoExit - Prints the exit status of the previous command
  * @printed_chars: Character count
  * Return: Always 0 (Success)
  */
-int echo_exit(int printed_chars)
+int echoExit(int printed_chars)
 {
 	int getExitStatusus = getExitStatus();
 	char *getExitStatusus_str = _itoa(getExitStatusus);
 
 	if (getExitStatusus_str != NULL)
 	{
-		int len = _strlen(getExitStatusus_str);
+		int len = strlen(getExitStatusus_str);
 
 		printed_chars += write(STDOUT_FILENO, getExitStatusus_str, len);
 		free(getExitStatusus_str);
@@ -139,7 +139,7 @@ int echo_env(int printed_chars, char **args, int i)
 
 	if (value != NULL)
 	{
-		len = _strlen(value);
+		len = strlen(value);
 		printed_chars += write(STDOUT_FILENO, value, len);
 		printed_chars += len;
 	}

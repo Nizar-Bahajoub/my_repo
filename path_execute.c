@@ -59,9 +59,9 @@ LinkedPath *linkPath(void)
 	head = currentNode;
 
 	path = getEnvironmentVariable("PATH");
-	pathDup = _strdup(path);
+	pathDup = strdup(path);
 	dir = stringTokenize(pathDup, ":");
-	currentNode->dir = _strdup(dir);
+	currentNode->dir = strdup(dir);
 
 	while (dir != NULL)
 	{
@@ -70,7 +70,7 @@ LinkedPath *linkPath(void)
 		{
 			currentNode->next = (LinkedPath *)malloc(sizeof(LinkedPath));
 			currentNode = currentNode->next;
-			currentNode->dir = _strdup(dir);
+			currentNode->dir = strdup(dir);
 		}
 	}
 	currentNode->next = NULL;

@@ -8,7 +8,7 @@
 int setAlias(char **args)
 {
 	int i = 1;
-	Alias *list_copy = get_Alias_list();
+	Alias *list_copy = getAliasList();
 	char *equals;
 
 	if (args[i] == NULL)
@@ -25,7 +25,7 @@ int setAlias(char **args)
 	for (i = 1; args[i] != NULL; i++)
 	{
 		equals = strchr(args[i], '=');
-		list_copy = get_Alias_list();
+		list_copy = getAliasList();
 		if (equals == NULL)
 		{
 			while (list_copy != NULL)
@@ -48,10 +48,10 @@ int setAlias(char **args)
 }
 
 /**
- * get_Alias_list - Returns the Alias list
+ * getAliasList - Returns the Alias list
  * Return: The Alias list
  */
-Alias *get_Alias_list(void)
+Alias *getAliasList(void)
 {
 	Alias *Alias_list = NULL;
 
