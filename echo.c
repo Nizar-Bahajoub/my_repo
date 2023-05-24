@@ -43,7 +43,7 @@ char *_itoa(int value)
  * @args: Command and arguments
  * Return: Number of characters printed
  */
-int echoCommand(char **args, int lineNum)
+int echoCommand(char **args)
 {
     int i, len;
     int printed_chars = 0;
