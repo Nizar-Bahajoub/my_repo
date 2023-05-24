@@ -1,31 +1,30 @@
 #include "main.h"
 
-
 /**
- * _strlen - Entry point
- * @s: string checked
- * Return: the length of a string.
+ * stringLength - Calculates the length of a string
+ * @s: Input string
+ * Return: Length of the string
  */
-int _strlen(const char *s)
+int stringLength(const char *s)
 {
-	int lent;
+	int length;
 
 	if (s == NULL)
 		return (-1);
 
-	lent = 0;
-	while (s[lent] != '\0')
-		lent++;
-	return (lent);
+	length = 0;
+	while (s[length] != '\0')
+		length++;
+	return length;
 }
 
 /**
- * _strcmp - Entry point
- * @s1: pointer variable 1
- * @s2: pointer variable 2
- * Return: result of two strings compared
+ * stringCompare - Compares two strings
+ * @s1: First string
+ * @s2: Second string
+ * Return: Result of the comparison
  */
-int _strcmp(const char *s1, const char *s2)
+int stringCompare(const char *s1, const char *s2)
 {
 	const char *p1 = s1;
 	const char *p2 = s2;
@@ -46,62 +45,62 @@ int _strcmp(const char *s1, const char *s2)
 }
 
 /**
- * _strchr - Entry point
- * @s: pointer variable
- * @c: character to be checked
- * Return: Always 0 (Success)
+ * stringCharacter - Locates a character in a string
+ * @s: Input string
+ * @c: Character to be located
+ * Return: Pointer to the first occurrence of the character, or NULL if not found
  */
-char *_strchr(const char *s, const char c)
+char *stringCharacter(const char *s, const char c)
 {
 	const char *p = s;
 	const char *pp = &c;
 	int i;
 
 	for (i = 0; *(p + i) != '\0'; i++)
-
+	{
 		if (*(p + i) == *pp)
 		{
 			return ((char *)(s + i));
 		}
+	}
 
-	return (0);
+	return NULL;
 }
 
 /**
- * _strdup - Entry point
- * @str: string to duplicate
- * Return: Always 0 (Success)
+ * stringDuplicate - Duplicates a string
+ * @str: Input string
+ * Return: Pointer to the duplicated string, or NULL if allocation fails
  */
-char *_strdup(const char *str)
+char *stringDuplicate(const char *str)
 {
 	int i, len = 0;
-	char *r_value;
+	char *result;
 
 	if (str == NULL)
-		return (NULL);
+		return NULL;
 
 	for (; str[len] != '\0'; len++)
 		;
 
-	r_value = malloc(sizeof(char) * (len + 1));
-	if (r_value == NULL)
-		return (NULL);
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return NULL;
 
 	for (i = 0; i <= len; i++)
-		r_value[i] = str[i];
+		result[i] = str[i];
 
-	return (r_value);
+	return result;
 }
 
 /**
- * _strncmp - Entry point
- * @s1: 1st string to compare
- * @s2: 2nd string to compare
+ * stringCompareN - Compares two strings up to a maximum number of characters
+ * @s1: First string
+ * @s2: Second string
  * @n: Maximum number of characters to compare
- * Return: Always 0 (Success)
+ * Return: Result of the comparison
  */
-
-int _strncmp(const char *s1, const char *s2, size_t n)
+int stringCompareN(const char *s1, const char *s2, size_t n)
 {
 	unsigned char p1, p2;
 	size_t i;
@@ -120,5 +119,5 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 			break;
 	}
 
-	return (0);
+	return 0;
 }

@@ -3,74 +3,75 @@
 /**
  * str_tok - Entry point
  * @command: command line
- * @delim: delimieter
+ * @delim: delimiter
  * Return: current token
  */
 char *str_tok(char *command, const char *delim)
 {
-	static char *last_token;
-	char *current_token;
+	static char *lastToken;
+	char *currentToken;
 
 	if (command != NULL)
-		last_token = command;
+		lastToken = command;
 
-	if (last_token == NULL || *last_token == '\0')
-		return (NULL);
+	if (lastToken == NULL || *lastToken == '\0')
+		return NULL;
 
-	current_token = last_token;
-	while (*current_token != '\0' && _strchr(delim, *current_token) != NULL)
-		current_token++;
+	currentToken = lastToken;
+	while (*currentToken != '\0' && _strchr(delim, *currentToken) != NULL)
+		currentToken++;
 
-	if (*current_token == '\0')
+	if (*currentToken == '\0')
 	{
-		last_token = NULL;
-		return (NULL);
+		lastToken = NULL;
+		return NULL;
 	}
 
-	last_token = current_token;
-	while (*last_token != '\0' && _strchr(delim, *last_token) == NULL)
-		last_token++;
+	lastToken = currentToken;
+	while (*lastToken != '\0' && _strchr(delim, *lastToken) == NULL)
+		lastToken++;
 
-	if (*last_token != '\0')
+	if (*lastToken != '\0')
 	{
-		*last_token = '\0';
-		last_token++;
+		*lastToken = '\0';
+		lastToken++;
 	}
 
-	return (current_token);
+	return currentToken;
 }
 
 /**
  * tokenize - Entry point
  * @command: string passed
  * @args: arguments passed
- * Return: Always 0 (Success)
+ * Return: Number of tokens
  */
 int tokenize(char *command, char **args)
 {
 	int i = 0;
 	char *token = str_tok(command, " \n\t\r\a");
-	char *trimmed_token;
+	char *trimmedToken;
 
 	while (token != NULL && i < MAXARGS - 1)
 	{
-		trimmed_token = token;
-		while (*trimmed_token == ' ')
+		trimmedToken = token;
+		while (*trimmedToken == ' ')
 		{
-			trimmed_token++;
+			trimmedToken++;
 		}
 
-		if (trimmed_token[0] == '#')
+		if (trimmedToken[0] == '#')
 		{
 			break;
 		}
 
-		if (*trimmed_token != '\0')
+		if (*trimmedToken != '\0')
 		{
-			args[i++] = trimmed_token;
+			args[i++] = trimmedToken;
 		}
 
 		token = str_tok(NULL, " \n\t\r\a");
 	}
-	return (i);
+
+	return i;
 }

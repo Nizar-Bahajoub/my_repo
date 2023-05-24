@@ -1,13 +1,12 @@
 #include "main.h"
 
-
 /**
- * _strcat - Entry point
- * @dest: pointer variable 1
- * @src: pointer variable 2
- * Return: two strings concatenated)
+ * stringConcatenate - Concatenates two strings
+ * @dest: Destination string
+ * @src: Source string
+ * Return: Pointer to the concatenated string
  */
-char *_strcat(char *dest, const char *src)
+char *stringConcatenate(char *dest, const char *src)
 {
 	char *p = dest;
 
@@ -24,17 +23,17 @@ char *_strcat(char *dest, const char *src)
 	}
 	*p = '\0';
 
-	return (dest);
+	return dest;
 }
 
 
 /**
- * _strcpy - Entry point
- * @dest: pointer variable 1
- * @src: pointer variable 2
- * Return: pointer to dest
+ * stringCopy - Copies a string
+ * @dest: Destination string
+ * @src: Source string
+ * Return: Pointer to the destination string
  */
-char *_strcpy(char *dest, const char *src)
+char *stringCopy(char *dest, const char *src)
 {
 	char *p;
 
@@ -56,5 +55,5 @@ char *_strcpy(char *dest, const char *src)
 
 	*p = '\0';
 
-	return (dest);
+	return dest;
 }

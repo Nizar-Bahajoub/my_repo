@@ -1,7 +1,8 @@
 #include "main.h"
+
 /**
- * get_dir - is a function that prints the working dir
- * Return: the working directory
+ * get_dir - Prints the working directory
+ * Return: The working directory
  */
 char *get_dir()
 {
@@ -24,14 +25,12 @@ char *get_dir()
 		return (NULL);
 	}
 }
+
 /**
- * _getenv - is a function that checks for
- * a variable in the environment
- * @name: is a a pointer to an array of characters
- * Return: a pointer if success or NULL if failed
+ * _getenv - Checks for a variable in the environment
+ * @name: Pointer to an array of characters
+ * Return: Pointer if success, NULL if failed
  */
-
-
 char *_getenv(const char *name)
 {
 	int i = 0;
@@ -54,12 +53,13 @@ char *_getenv(const char *name)
 	}
 	return (NULL);
 }
+
 /**
- * get_line - Entry point
- * @buffer: to hold command and arguments
- * @bufsize: size of buffer
- * @fd: file descriptor of input stream
- * Return: string buffer
+ * get_line - Reads a line from input stream
+ * @buffer: Pointer to hold command and arguments
+ * @bufsize: Size of buffer
+ * @fd: File descriptor of input stream
+ * Return: Length of the string buffer
  */
 ssize_t get_line(char **buffer, size_t *bufsize, int fd)
 {
@@ -102,9 +102,9 @@ ssize_t get_line(char **buffer, size_t *bufsize, int fd)
 	free(*buffer);
 	return (-1);
 }
+
 /**
- * not_buff - Entry point
- * Return: error
+ * not_buff - Prints an error message
  */
 void not_buff(void)
 {

@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * print_error - Entry point
- * @cmd: first argument
- * @msg: error message
- * @line_num: to track error
+ * print_error - Prints an error message to stderr
+ * @cmd: First argument
+ * @msg: Error message
+ * @line_num: Line number to track error
  * Return: Always 0 (Success)
  */
 void print_error(const char *cmd, const char *msg, int line_num)
@@ -46,9 +46,9 @@ void print_error(const char *cmd, const char *msg, int line_num)
 
 
 /**
- * cd_error - Entry point
- * @args: arguments
- * Return: Always 0 (Success)
+ * cd_error - Creates an error message for cd command
+ * @args: Arguments
+ * Return: Pointer to the error message
  */
 char *cd_error(char **args)
 {
@@ -59,10 +59,10 @@ char *cd_error(char **args)
 		return (NULL);
 	}
 
-	_strcpy(error_message, "can't ");
-	_strcat(error_message, " ");
+	_strcpy(error_message, " can 't ");
+	_strcat(error_message, "  ");
 	_strcat(error_message, args[0]);
-	_strcat(error_message, " to ");
+	_strcat(error_message, "  to ");
 	_strcat(error_message, args[1]);
 
 	return (error_message);

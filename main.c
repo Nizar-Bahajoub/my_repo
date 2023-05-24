@@ -1,7 +1,5 @@
 #include "main.h"
 
-void handleSignal(int signal);
-
 /**
  * main - Entry point
  * @argc: argument count
@@ -11,55 +9,50 @@ void handleSignal(int signal);
 int main(int argc __attribute__((unused)), char **argv)
 {
 	bool interactive = isatty(STDIN_FILENO);
-	char *shellPrompt = interactive ? "$ " : "";
-	size_t n = 0;
-	ssize_t line;
+	const char *shellPrompt = interactive ? "$ " : "";
+	size_t buffer_size = 0;
+	ssize_t line_length;
 	int line_num = 1;
 	char **cmd;
 
-	signal(SIGINT, SIG_IGN);
-
-	for (;;)
+	while (true)
 	{
+		/* Print shell prompt if in interactive mode */
 		if (interactive)
 		{
-			write(STDOUT_FILENO, shellPrompt, 3);
+			write(STDOUT_FILENO, shellPrompt, strlen(shellPrompt));
 			fflush(stdout);
 		}
-		line = get_line(argv, &n, STDIN_FILENO);
-		if (line == -1)
+
+		/* Read input line */
+		line_length = getline(&argv[0], &buffer_size, stdin);
+		if (line_length == -1)
 		{
+			/* Check for end of input */
 			if (feof(stdin))
 			{
 				exit(EXIT_SUCCESS);
 			}
 			break;
 		}
-		if (line == 0 || *argv[0] == '\n')
+
+		/* Skip empty lines */
+		if (line_length == 1 && argv[0][0] == '\n')
 			continue;
+
+		/* Execute commands */
 		cmd = argv;
 		while (*cmd != NULL)
 		{
 			execute(*cmd, line_num);
 			cmd++;
 		}
+
+		/* Free arguments */
 		_freeargs(argv);
+
 		line_num++;
 	}
-	return (0);
-}
 
-
-/**
- * handleSignal - Entry point
- * @signal: signal
- * Return: Always 0 (Success)
- */
-void handleSignal(int signal)
-{
-	(void)signal;
-	if (signal == SIGINT)
-	{
-		write(STDOUT_FILENO, "\n", 1);
-	}
+	return 0;
 }

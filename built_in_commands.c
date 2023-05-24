@@ -1,8 +1,9 @@
 #include "main.h"
+
 /**
- * my_env - Entry point
+ * my_env - Prints the environment variables
  *
- * Return: void
+ * Return: Always 0 (Success)
  */
 int my_env(void)
 {
@@ -20,10 +21,10 @@ int my_env(void)
 
 
 /**
- * my_cd - Entry point
- * @args: arguments passed
- * @line_num: command count
- * Return: void
+ * my_cd - Changes the current directory
+ * @args: Arguments passed
+ * @line_num: Command count
+ * Return: Always 0 (Success)
  */
 int my_cd(char **args, int line_num)
 {
@@ -68,10 +69,10 @@ int my_cd(char **args, int line_num)
 
 
 /**
- * my_setenv - Entry point
- * @name: name of environment variable
- * @value: environment value
- * @overwrite: replace variable
+ * my_setenv - Sets the value of an environment variable
+ * @name: Name of the environment variable
+ * @value: Environment value
+ * @overwrite: Replace variable
  * Return: Always 0 (Success)
  */
 int my_setenv(const char *name, const char *value, int overwrite)
@@ -118,8 +119,8 @@ int my_setenv(const char *name, const char *value, int overwrite)
 }
 
 /**
- * my_unsetenv - Entry point
- * @args: command and arguments
+ * my_unsetenv - Unsets an environment variable
+ * @args: Command and arguments
  * Return: Always 0 (Success)
  */
 int my_unsetenv(char **args)
@@ -151,8 +152,8 @@ int my_unsetenv(char **args)
 
 
 /**
- * my_exit - Entry point
- * @args: command and arguments
+ * my_exit - Exits the shell
+ * @args: Command and arguments
  * Return: Always 0 (Success)
  */
 int my_exit(char **args)

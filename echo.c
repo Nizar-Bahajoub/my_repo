@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _itoa - Entry point
- * @value: integer to be converted
- * Return: string converted from integer
+ * _itoa - Converts an integer to a string
+ * @value: Integer to be converted
+ * Return: String converted from the integer
  */
 char *_itoa(int value)
 {
@@ -39,9 +39,9 @@ char *_itoa(int value)
 }
 
 /**
- * my_echo - Entry point
- * @args: command and arguments
- * Return: Always 0 (Success)
+ * my_echo - Prints the given arguments to stdout
+ * @args: Command and arguments
+ * Return: Number of characters printed
  */
 int my_echo(char **args)
 {
@@ -78,8 +78,8 @@ int my_echo(char **args)
 }
 
 /**
- * echo_ppid - Entry point
- * @printed_chars: character count
+ * echo_ppid - Prints the process ID of the parent process
+ * @printed_chars: Character count
  * Return: Always 0 (Success)
  */
 int echo_ppid(int printed_chars)
@@ -88,27 +88,26 @@ int echo_ppid(int printed_chars)
 	pid_t pid;
 	char *pid_str;
 
-			pid = getpid();
-			pid_str = _itoa(pid);
+	pid = getpid();
+	pid_str = _itoa(pid);
 
-			if (pid_str != NULL)
-			{
-				len = _strlen(pid_str);
+	if (pid_str != NULL)
+	{
+		len = _strlen(pid_str);
 
-				printed_chars += write(STDOUT_FILENO, pid_str, len);
-				free(pid_str);
-			}
-			return (0);
+		printed_chars += write(STDOUT_FILENO, pid_str, len);
+		free(pid_str);
+	}
+	return (0);
 }
 
 /**
- * echo_exit - Entry point
- * @printed_chars: character count
+ * echo_exit - Prints the exit status of the previous command
+ * @printed_chars: Character count
  * Return: Always 0 (Success)
  */
 int echo_exit(int printed_chars)
 {
-
 	int exit_status = exit_stat();
 	char *exit_status_str = _itoa(exit_status);
 
@@ -123,10 +122,10 @@ int echo_exit(int printed_chars)
 }
 
 /**
- * echo_env - Entry point
- * @printed_chars: character count
- * @args: arguments
- * @i: iterate variable
+ * echo_env - Prints the value of an environment variable
+ * @printed_chars: Character count
+ * @args: Arguments
+ * @i: Iterate variable
  * Return: Always 0 (Success)
  */
 int echo_env(int printed_chars, char **args, int i)

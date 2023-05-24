@@ -1,10 +1,11 @@
 #include "main.h"
+
 /**
- * _freeargs - is a function that frees the arguments
- * @args: this is the tokenized arguments
- * Return:void
+ * _freeargs - Frees the arguments
+ * @args: Tokenized arguments
+ * Return: void
  */
-void  _freeargs(char **args)
+void _freeargs(char **args)
 {
 	int index;
 	int len = 0;
@@ -19,15 +20,15 @@ void  _freeargs(char **args)
 }
 
 /**
- * _freepath - is a function that frees the path
- * @path: is a function that frees the path
- * Return:void
+ * _freepath - Frees the path
+ * @path: Pointer to the linked path
+ * Return: void
  */
 void _freepath(linked_path *path)
 {
 	linked_path *temp;
 
-	while (temp != NULL)
+	while (path != NULL)
 	{
 		temp = path->next;
 		free(path->dir);
@@ -35,9 +36,10 @@ void _freepath(linked_path *path)
 		path = temp;
 	}
 }
+
 /**
- * _freeenv - is a function that frees the eniron
- * Return:void
+ * _freeenv - Frees the environment variables
+ * Return: void
  */
 void _freeenv(void)
 {

@@ -1,9 +1,10 @@
 #include "main.h"
+
 /**
- * execute - Entry point
- * @command: command passed
- * @line_num: to track commands
- * Return: id of fork
+ * execute - Executes a command
+ * @command: Command passed
+ * @line_num: Line number to track commands
+ * Return: ID of fork
  */
 int execute(char *command, int line_num)
 {
@@ -46,9 +47,9 @@ int execute(char *command, int line_num)
 
 
 /**
- * run_child - Entry point
- * @args: command passed
- * Return: id of fork
+ * run_child - Executes the child process
+ * @args: Command passed
+ * Return: ID of fork
  */
 int run_child(char **args)
 {
@@ -73,22 +74,22 @@ int run_child(char **args)
 }
 
 /**
- * run_parent - Entry point
+ * run_parent - Executes the parent process
  *
- * Return: id of fork
+ * Return: ID of fork
  */
 int run_parent(void)
 {
-	exit_stat();
+	exit_status();
 	return (0);
 }
 
 /**
- * exit_stat - Entry point
+ * exit_status - Retrieves the exit status of the child process
  *
- * Return: id of fork
+ * Return: Exit status
  */
-int exit_stat(void)
+int exit_status(void)
 {
 	int status;
 	static int exit_status;
