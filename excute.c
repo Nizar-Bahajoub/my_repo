@@ -92,13 +92,13 @@ int runParentProcess(void)
 int getExitStatus(void)
 {
 	int status;
-	static int getExitStatus;
+	static int exitStatusValue;
 
 	wait(&status);
 
 	if (WIFEXITED(status))
 	{
-		getExitStatus = WEXITSTATUS(status);
+		exitStatusValue = WEXITSTATUS(status);
 	}
-	return (getExitStatus);
+	return exitStatusValue;
 }

@@ -108,18 +108,19 @@ int echoParentProcessID(int printed_chars)
  */
 int echoExit(int printed_chars)
 {
-	int getExitStatus = getExitStatus();
-	char *getExitStatus_str = _itoa(getExitStatus);
+	int exitStatus = getExitStatus();
+	char *exitStatus_str = _itoa(exitStatus);
 
-	if (getExitStatus_str != NULL)
+	if (exitStatus_str != NULL)
 	{
-		int len = strlen(getExitStatus_str);
+		int len = strlen(exitStatus_str);
 
-		printed_chars += write(STDOUT_FILENO, getExitStatus_str, len);
-		free(getExitStatus_str);
+		printed_chars += write(STDOUT_FILENO, exitStatus_str, len);
+		free(exitStatus_str);
 	}
-	return (0);
+	return 0;
 }
+
 
 /**
  * echoEnvironmentVariable - Prints the value of an environment variable
