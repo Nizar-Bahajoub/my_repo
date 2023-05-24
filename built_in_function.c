@@ -45,7 +45,7 @@ int isBuiltInCommand(char **args, int line_num)
  * @line_num: Execution count (unused)
  * Return: 1 if it's a built-in command, 0 otherwise
  */
-int built_ins2(char **args, int line_num __attribute__ ((unused)))
+int isBuiltInCommand2(char **args, int line_num __attribute__ ((unused)))
 {
 	if (strcmp(args[0], "Alias") == 0)
 	{
